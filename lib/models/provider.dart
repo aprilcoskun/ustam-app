@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:ustam/models/styles.dart';
-import 'package:ustam/provider_detail_page.dart';
+import 'package:ustam/pages/provider/provider_detail.page.dart';
 
 class Provider {
   int id;
@@ -14,6 +14,10 @@ class Provider {
   int rating;
   NetworkImage profilePic;
   String occupation;
+  List<String> skills;
+  String description;
+  DateTime createdAt;
+  Map<String, dynamic> education;
 
   Provider(
       this.id,
@@ -25,7 +29,11 @@ class Provider {
       this.rating,
       this.status,
       this.profilePic,
-      this.occupation);
+      this.occupation,
+      this.skills,
+      this.description,
+      this.createdAt,
+      this.education);
 
   List<Widget> getRatings() {
     List<Widget> ratings = [];
@@ -65,21 +73,7 @@ class Provider {
   }
 
   Widget buildCardBody(BuildContext context) {
-    return Hero(
-        tag: id.toString() + "body",
-        flightShuttleBuilder: (BuildContext flightContext,
-                                Animation<double> animation,
-                                HeroFlightDirection flightDirection,
-                                BuildContext fromHeroContext,
-                                BuildContext toHeroContext,){
-
-                              return SingleChildScrollView(
-                                child: fromHeroContext.widget,
-                              );
-                            },
-        child: Material(
-            color: Colors.transparent,
-            child: Column(children: [
+    return Column(children: [
               Container(
                 margin: const EdgeInsets.only(top: 16),
                 child: Row(
@@ -117,7 +111,7 @@ class Provider {
                   ],
                 ),
               )
-            ])));
+            ]);
   }
 
   Widget buildCard(BuildContext context) {

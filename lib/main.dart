@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:ustam/models/provider.dart';
-import 'package:ustam/utils.dart';
+import 'package:ustam/utils/funcs.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,9 +15,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
+      theme: ThemeData(primarySwatch: Colors.green),
+      debugShowCheckedModeBanner: false,
       home: const MyHomePage(title: 'Ustam'),
     );
   }
@@ -43,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   // search by using text
   void searchJobs(String text) async {
     showLoading(context);
-    Future.delayed(const Duration(milliseconds: 1000), () {
+    Future.delayed(const Duration(milliseconds: 1), () {
       hideLoading(context);
       setState(() {
         for (int i = 0; i < 10; i++) {
@@ -57,7 +56,15 @@ class _MyHomePageState extends State<MyHomePage> {
               5,
               "Available",
               const NetworkImage("https://avatars.nisancoskun.com/a/nisan"),
-              "Software Developer"));
+              "Software Developer",
+              ["Backend", "Frontend", "IOS", "Andriod"],
+              "Hi, I am Nisan, a Full-Stack Software Developer from Istanbul, Turkey. I can provide software development services tailored to your needs.",
+              DateTime.parse("20180420"),
+              {
+                "graduation_year": "2021",
+                "program": "Bachelor of Science Computer Engineering",
+                "school": "Faculty of Engineering at Duzce University"
+              }));
         }
         // providers = getProviders();
       });
